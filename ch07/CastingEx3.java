@@ -46,5 +46,18 @@ public class CastingEx3 {
 		for(int i = 0; i < ani.length; i++) {
 			ani[i].move();
 		}
+		
+		
+		Fish f;
+		Object obj;
+		//.....
+		//.....
+		// 하위클래스의 메소드 호출은 불가. 하지만 참조는 가능
+		
+		
+		Animal ani2 = new Animal();
+		Bird b = (Bird)ani2; // 강제로 Casting 경우 컴파일 시점은 에러가 발생되지 않지만 실행 시점에 에러 발생
+
+		
 	}
 }

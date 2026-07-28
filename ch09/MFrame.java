@@ -1,0 +1,42 @@
+package ch09;
+
+import java.awt.Color;
+import java.awt.Frame;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+public class MFrame extends Frame{
+	
+	MFrame(){
+		this(300, 300, new Color(220, 220, 220));
+	}
+	
+	MFrame(int w, int h){
+		this(w, h, new Color(220, 220, 220));
+	}
+	
+	MFrame(Color c){
+		//super();
+		this(300, 300, c);
+	}
+	
+	MFrame(int w, int h, Color c) {
+		super();
+		setTitle("제목");
+		setSize(w, h);
+		setBackground(c);
+		setResizable(true);
+		setVisible(true);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
+		validate();
+	}
+	
+	public static void main(String[] args) {
+		MFrame mf = new MFrame(Color.GREEN);
+	}
+}
