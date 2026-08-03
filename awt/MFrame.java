@@ -1,0 +1,46 @@
+package awt;
+
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.Font;
+
+public class MFrame extends Frame{
+	
+	MFrame(){
+		this(300, 300, new Color(220, 220, 220));
+	}
+	
+	MFrame(int w, int h){
+		this(w, h, new Color(220, 220, 220));
+	}
+	
+	MFrame(Color c){
+		//super();
+		this(300, 300, c);
+	}
+	
+	MFrame(int w, int h, Color c) {
+		super();
+		setFont(new Font("Malgun Gothic", Font.PLAIN, 12));
+		setLayout(new FlowLayout());
+		setTitle("제목");
+		setSize(w, h);
+		setBackground(c);
+		setResizable(true);
+		setVisible(true);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
+		validate();
+	}
+	
+	public static void main(String[] args) {
+		MFrame mf = new MFrame(Color.GREEN);
+	}
+}
