@@ -26,14 +26,14 @@ public class ItemEventEx1 extends MFrame implements ItemListener {
     @Override
     public void itemStateChanged(ItemEvent e) {
     	String item = (String)e.getItem();
+    	//System.out.println(item);
     	switch (item) {
 		case "Red": setBackground(Color.RED); break;
 		case "Green": setBackground(Color.GREEN); break;
-		case "Blue": setBackground(Color.blue); break;
-		case "Yellow": setBackground(Color.yellow); break;
-		default: setBackground(Color.white);
-
-    	}
+		case "Blue": setBackground(Color.BLUE); break;
+		case "Yellow": setBackground(Color.YELLOW); break;
+		default: setBackground(Color.WHITE);
+		}
     	setTitle("Selected: " + item);
     }
 

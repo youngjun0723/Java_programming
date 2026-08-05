@@ -129,20 +129,20 @@ public class DrawAllEx1 extends MFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
-		if(obj == b1) {
+		if(obj==b1/*선*/) {
 			mode = 0;
 			selectPanel(mode);
-		} else if(obj == b2) {
+		}else if(obj==b2) {
 			mode = 1;
 			selectPanel(mode);
-		} else if(obj == b3) {
+		}else if(obj==b3) {
 			mode = 2;
 			selectPanel(mode);
-		} else if( obj == btn) {
+		}else if(obj==btn/*그리기*/) {
 			Checkbox cb = cbg.getSelectedCheckbox();
-			if(cb == rcb) color = 0;
-			else if(cb == gcb) color = 1;
-			else if(cb == bcb) color = 2;
+			if(cb==rcb) color = 0;
+			else if(cb==gcb) color = 1;
+			else if(cb==bcb) color = 2;
 			canvas.repaint();
 		}
 	}
@@ -150,35 +150,32 @@ public class DrawAllEx1 extends MFrame implements ActionListener {
 	class MCanvas extends Canvas{
 		@Override
 		public void paint(Graphics g) {
-			// 기존에 그림 잔상을 제거
+			//기존에 그림 잔상을 제거
 			super.paint(g);
 			int a[] = new int[4];
 			for (int i = 0; i < a.length; i++) {
 				a[i] = Integer.parseInt(tf[i].getText().trim());
-			}
+			}//--for
 			switch (color) {
-			case 0: g.setColor(Color.red); break;
-			case 1: g.setColor(Color.green); break;
-			case 2: g.setColor(Color.blue); break;
-			}
+			case 0: g.setColor(Color.RED); break;
+			case 1: g.setColor(Color.GREEN); break;
+			case 2: g.setColor(Color.BLUE); break;
+			}//--switch
 			switch (mode) {
-			case 0: g.drawLine(a[0],  a[1],  a[2],  a[3]); break;
-			case 1:
-			    if (fillcb.getState()) { 
-			        g.fillRect(a[0], a[1], a[2], a[3]);
-			    } else {
-			        g.drawRect(a[0], a[1], a[2], a[3]);
-			    }
-			    break; 
-			case 2:
-			    if (fillcb.getState()) { 
-			        g.fillOval(a[0], a[1], a[2], a[3]);
-			    } else {
-			        g.drawOval(a[0], a[1], a[2], a[3]);
-			    }
-			    break; // 
+			case 0://선
+				g.drawLine(a[0], a[1], a[2], a[3]);
+				break;
+			case 1://사각형
+				if(fillcb.getState())
+					g.fillRect(a[0], a[1], a[2], a[3]);
+				else
+					g.drawRect(a[0], a[1], a[2], a[3]);
+			case 2://원
+				if(fillcb.getState())
+					g.fillOval(a[0], a[1], a[2], a[3]);
+				else
+					g.drawOval(a[0], a[1], a[2], a[3]);
 			}
-		
 		}//---------paint
 	}//-----MCanvas
 

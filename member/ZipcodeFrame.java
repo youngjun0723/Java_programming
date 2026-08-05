@@ -24,9 +24,9 @@ implements ActionListener{
 	DialogBox err;
 	MemberAWT awt;
 	
-	public ZipcodeFrame(/* MemberAWT awt */) {
+	public ZipcodeFrame(MemberAWT awt) {
 		super(300, 500);
-		//this.awt = awt;
+		this.awt = awt;
 		setTitle("ZipcodeFrame");
 		mgr = new ZipcodeMgr();
 		p1=new JPanel();
@@ -54,42 +54,44 @@ implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
-		if (obj == tf || obj == searchBtn) {
-			// 기존에 결과가 있다면 리스트 초기화
-			if (list.getItemCount() != 0) {
+		if(obj==tf||obj==searchBtn) {
+			//기존에 결과가 있다면
+			if(list.getItemCount()!=0)
 				list.removeAll();
-			}
-			
-			// 검색어 가져오기 및 DB 조회
 			Vector<ZipcodeBean> vlist = mgr.searchZipcode(tf.getText().trim());
-			
-			// [수정 2 & 3] 로직 및 중괄호 위치 수정
-			if (vlist.isEmpty()) {
-				// 결과가 하나도 없다면 DialogBox 띄우기 (재활용 패턴)
-				if (err == null) {
+			if(vlist.isEmpty()) {
+				if(err == null) {
 					err = new DialogBox(this, "검색 결과가 없습니다", "알림");
-				} else {
+				}else {
+					//err 객체가 null 아닌경우. 한번 만들어진 객체를 재활용
 					err.setLocationRelativeTo(this);
 					err.setVisible(true);
 				}
-			} else {
-				// 결과가 있다면 List에 추가
+			}else {
+				//결과가 있는 경우
 				for (ZipcodeBean bean : vlist) {
-					// [수정 4] getArea1, 2, 3으로 올바르게 연결
-					String adds = bean.getZipcode() + " ";
-					adds += bean.getArea1() + " ";
-					adds += bean.getArea2() + " ";
-					adds += bean.getArea3() + " ";
+					String adds = bean.getZipcode()+ " ";
+					adds+=bean.getArea1()+" ";
+					adds+=bean.getArea2()+" ";
+					adds+=bean.getArea3()+" ";
 					list.add(adds);
 				}
 			}
 		}else if(obj==list||obj==selectBtn) {
-			
+			String add = list.getSelectedItem().trim()+"   ";
+			//new DialogBox(this, add, "주소");
+			/*선택한 주소를 더블클릭 또는 '선택' 버튼을 클릭하면
+			 * 자신의 창은 사라지고 MemberAWT창에 있는 주소값을 전달
+			 * 검색된 주소 리스트는 모두 제거
+			 * */
+			awt.tf4.setText(add);
+			list.removeAll();
+			dispose();
 		}
 	}
 	
 	public static void main(String[] args) {
-		new ZipcodeFrame();
+		//new ZipcodeFrame();
 	}
 }
 

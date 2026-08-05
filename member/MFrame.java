@@ -5,7 +5,6 @@ import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.Font;
 
 public class MFrame extends Frame{
 	
@@ -24,7 +23,7 @@ public class MFrame extends Frame{
 	
 	MFrame(int w, int h, Color c) {
 		super();
-		setFont(new Font("Malgun Gothic", Font.PLAIN, 12));
+		//Frame의 기본 레이아웃: BoardLayout
 		setTitle("제목");
 		setSize(w, h);
 		setBackground(c);

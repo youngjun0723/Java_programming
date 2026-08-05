@@ -1,10 +1,10 @@
 package member;
 
-// Bean: 테이블 레코드 단위의 값을 저장하는 객체
-// Java, Jsp -> 테이블명 + Bean     MemberBean
+//빈즈: 테이블 레코드 단위의 값을 저장하는 객체
+//JAVA, JSP: 테이블명+Bean: Member+Bean
 public class MemberBean {
-	
-	// 테이블 스키마
+
+	//테이블 스키마
 	private int num;
 	private String name;
 	private String phone;
@@ -17,33 +17,28 @@ public class MemberBean {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	public String getPhone() {
 		return phone;
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
 	public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
 	public String getTeam() {
 		return team;
 	}
 	public void setTeam(String team) {
 		this.team = team;
 	}
-
 }

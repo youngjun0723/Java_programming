@@ -15,7 +15,7 @@ public class CalendarEx1 {
 		if(ampm == Calendar.AM) {
 			System.out.println("현재 시간은 AM");
 		}else {
-			System.out.println("현재 시간은 PM");			
+			System.out.println("현재 시간은 PM");
 		}
 		System.out.print(cal.get(Calendar.HOUR) + "시 ");
 		System.out.print(cal.get(Calendar.MINUTE) + "분 ");

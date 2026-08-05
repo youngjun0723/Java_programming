@@ -32,21 +32,11 @@ public class ItemEventEx2 extends MFrame implements ItemListener {
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        String str = "";
-
-        // 각 체크박스가 체크되어 있는지 확인 후 문자열을 이어 붙입니다.
-        if (cb1.getState()) {
-            str += cb1.getLabel() + " ";
-        }
-        if (cb2.getState()) {
-            str += cb2.getLabel() + " ";
-        }
-        if (cb3.getState()) {
-            str += cb3.getLabel() + " ";
-        }
-
-        // 결과 문자열을 텍스트 필드에 출력
-        tf.setText(str);
+      String str = "";
+      if(cb1.getState()) str+= cb1.getLabel()+" ";
+      if(cb2.getState()) str+= cb2.getLabel()+" ";
+      if(cb3.getState()) str+= cb3.getLabel()+" ";
+      tf.setText("선택된 취미: " + str);
     }
 
     public static void main(String[] args) {

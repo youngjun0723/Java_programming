@@ -40,25 +40,19 @@ implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		/*
+		if(e.getSource()==btn[0]) idx=0;
+		else if(e.getSource()==btn[1]) idx=1;
+		else if(e.getSource()==btn[2]) idx=2;
+		else if(e.getSource()==btn[3]) idx=r.nextInt(3);//0~2
+		*/
 		Object obj = e.getSource();
-		
-//		if(obj == btn[0]) {
-//			idx = 0;
-//		} else if(obj == btn[1]) {
-//			idx = 1;
-//		} else if(obj == btn[2]) {
-//			idx = 2;
-//		} else if(obj == btn[3]) {
-//			idx = r.nextInt(img.length);
-//		}
-		for(int i = 0; i < btn.length; i++) {
-			if(obj == btn[i]) {
-				idx = (i == btn.length - 1) ? r.nextInt(img.length) : i;
+		for (int i = 0; i < btn.length; i++) {
+			if(obj==btn[i]) {
+				idx = (i==btn.length-1)?r.nextInt(img.length) :i;
 				break;
 			}
-		}
-		
-		setTitle("제목: aaa"+ (idx + 1) + ".jpg");
+		} 
 		
 		repaint();
 	}
@@ -67,9 +61,10 @@ implements ActionListener{
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		if(img[idx]!=null) {
-			g.drawImage(img[idx], 0, 0, this);
-		}
+		if(img==null)
+			return;
+		setTitle("graphics/aaa"+idx+".jpg");
+		g.drawImage(img[idx], 0, 0, this);
 	}
 	
 	public static void main(String[] args) {

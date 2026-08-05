@@ -1,7 +1,5 @@
 package member;
 
-
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +7,6 @@ import java.sql.ResultSet;
 public class MySQLConnection {
 	
 	private DBConnectionMgr pool;
-		
 	
 	public MySQLConnection() {
 		try {
@@ -20,6 +17,7 @@ public class MySQLConnection {
 		}
 	}
 	
+	//import: java.sql
 	public void listExCnt(){
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -43,5 +41,4 @@ public class MySQLConnection {
 		MySQLConnection my = new MySQLConnection();
 		my.listExCnt();
 	}
-
 }

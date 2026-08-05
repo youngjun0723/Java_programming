@@ -36,11 +36,8 @@ implements MouseMotionListener{
 	
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		lMove.setLocation(e.getPoint()); // 마우스 모션 움직일 때 라벨이 같이 이동함.
+		lMove.setLocation(e.getPoint());
 	}
-	
-	
-	
 	
 	public static void main(String[] args) {
 		new MouseMotionEventEx1();

@@ -18,7 +18,6 @@ public class WrapperEx1 {
 		vec.add(a); // Auto Boxing <- Integer 타입을 변환저장
 		
 		
-		
 		Integer it3 = new Integer(a);
 		Integer it4 = new Integer("22");
 		Integer it5 = Integer.valueOf(a);

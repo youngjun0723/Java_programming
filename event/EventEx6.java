@@ -23,30 +23,29 @@ public class EventEx6 extends MFrame implements ItemListener{
 		red.addItemListener(this);
 		green.addItemListener(this);
 		cyan.addItemListener(this);
-		
 		setBackground(Color.CYAN);
 		add(p, BorderLayout.SOUTH);
 	}
 	
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		// 1. Object 방식
+		//1.Object 방식
 		Object obj = e.getSource();
-		if(obj == red) {}
-
-		// 2. 이벤트 소스가 동일한 타입
+		if(obj==red) {}
+		
+		//2.이벤트 소스가 동일한 타입
 		Checkbox cb = (Checkbox)e.getSource();
-		System.out.println(cb.getLabel());
+		//System.out.println(cb.getLabel());
 		if(cb.getLabel().equalsIgnoreCase("red")) {
 			setBackground(Color.RED);
-			//p.setBackground(Color.RED);
-			red.setBackground(Color.RED);
+			p.setBackground(Color.RED);
+			//red.setBackground(Color.RED);//Checkbox 색상 변경
 		}else if(cb.getLabel().equalsIgnoreCase("green")) {
-			setBackground(Color.green);
-			p.setBackground(Color.green);
+			setBackground(Color.GREEN);
+			p.setBackground(Color.GREEN);
 		}else if(cb.getLabel().equalsIgnoreCase("cyan")) {
-			setBackground(Color.cyan);
-			p.setBackground(Color.cyan);
+			setBackground(Color.CYAN);
+			p.setBackground(Color.CYAN);
 		}
 		validate();
 	}

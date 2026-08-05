@@ -13,8 +13,8 @@ public class ZipcodeMgr {
 		pool = DBConnectionMgr.getInstance();
 	}
 	
-	// 우편번호 검색
-	public Vector<ZipcodeBean> searchZipcode(String area3) {
+	//우편번호검색
+	public Vector<ZipcodeBean> searchZipcode(String area3){
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -24,7 +24,7 @@ public class ZipcodeMgr {
 			con = pool.getConnection();
 			sql = "select * from tblZipcode where area3 like ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "%"+area3+"%"); // area3 like '%강남대로%'
+			pstmt.setString(1, "%"+area3+"%");//area3 like '%강남대로%'
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ZipcodeBean bean = new ZipcodeBean();
@@ -43,3 +43,15 @@ public class ZipcodeMgr {
 		return vlist;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+

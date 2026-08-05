@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.lang.reflect.Member;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -29,7 +28,7 @@ public class MemberAWT extends MFrame implements ActionListener {
 	Vector<MemberBean> vlist;
 	MemberMgr mgr;
 	int num;
-	
+	ZipcodeFrame zf;
 
 	public MemberAWT() {
 		super(320, 450);
@@ -62,15 +61,15 @@ public class MemberAWT extends MFrame implements ActionListener {
 		label.setOpaque(true);
 		label.setText("NO  NAME          PHONE                         TEAM");
 		label.setBackground(Color.CYAN);
-		vlist = mgr.listMenber();
+		vlist = mgr.listMember();
 		list = new List(vlist.size(), false);
-		for(int i = 0; i < vlist.size(); i++) {
-			// vector에 저장된 MemberBean 리턴
+		for (int i = 0; i < vlist.size(); i++) {
+			//Vector 저장된 MemberBean 리턴
 			MemberBean bean = vlist.get(i);
-			String str = (i+1) + "     ";
-			str += bean.getName().trim() + "    ";
-			str += bean.getPhone().trim() + "    ";
-			str += bean.getTeam().trim();
+			String str = (i+1) +"    ";
+			str+=bean.getName().trim()+"         ";
+			str+=bean.getPhone().trim()+"          ";
+			str+=bean.getTeam().trim();
 			list.add(str);
 		}
 		//실행 후 list 첫번째 아이템에 커서 세팅
@@ -118,11 +117,11 @@ public class MemberAWT extends MFrame implements ActionListener {
 				}
 			}
 		});
-		//Vector<String> vlist = mgr.getTeamList();
+		Vector<String> vlist = mgr.getTeamList();
 		ch.add("팀을 선택하세요");
-		//for (int i = 0; i < vlist.size(); i++) {
-			//ch.add(vlist.get(i));
-		//}
+		for (int i = 0; i < vlist.size(); i++) {
+			ch.add(vlist.get(i));
+		}
 		p10.add(ch);
 		p3.add(p10);
 		//////////////////////////////
@@ -184,11 +183,11 @@ public class MemberAWT extends MFrame implements ActionListener {
 				}
 			}
 		});
-		//Vector<String> vlist = mgr.getTeamList();
+		Vector<String> vlist = mgr.getTeamList();
 		ch.add("팀을 선택하세요");
-		//for (int i = 0; i < vlist.size(); i++) {
-			//ch.add(vlist.get(i));
-		//}
+		for (int i = 0; i < vlist.size(); i++) {
+			ch.add(vlist.get(i));
+		}
 		p10.add(ch);
 		p3.add(p10);
 		//////////////////////////////
@@ -229,17 +228,16 @@ public class MemberAWT extends MFrame implements ActionListener {
 			int n = list.getSelectedIndex();
 			MemberBean bean = vlist.get(n);
 			if(mgr.deleteMember(bean.getNum())) {
-				new DialogBox(this, "삭제 하였습니다.", "삭제");
+				new DialogBox(this, "삭제를 하였습니다", "삭제");
 				p3.removeAll();
 				remove(p3);
 				list.removeAll();
 				remove(list);
 				vlist.removeAllElements();
 				viewList();
-			} else {
-				new DialogBox(this, "삭제에 실패 하였습니다.", "삭제");
+			}else {
+				new DialogBox(this, "삭제에 실패 하였습니다", "삭제");
 			}
-
 		}else if(obj==b3/*입력폼버튼*/) {
 			p3.removeAll();
 			list.removeAll();
@@ -252,9 +250,16 @@ public class MemberAWT extends MFrame implements ActionListener {
 			remove(list);
 			vlist.removeAllElements();
 			viewList();
-
 		}else if(obj==zipBtn/*우편번호 검색창*/) {
-			
+			//처음 실행할때 객체를 생성하지만 두번째는 재사용
+			if(zf==null) {
+				zf = new ZipcodeFrame(this);
+				zf.setLocation(getX()+getWidth(), getY());
+				zf.setVisible(true);
+			}else {
+				zf.setLocation(getX()+getWidth(), getY());
+				zf.setVisible(true);
+			}
 		}else if(obj==insBtn/*입력저장버튼*/) {
 			MemberBean bean = new MemberBean();
 			bean.setName(tf1.getText());
@@ -262,16 +267,14 @@ public class MemberAWT extends MFrame implements ActionListener {
 			bean.setTeam(tf3.getText());
 			bean.setAddress(tf4.getText());
 			if(mgr.insertMember(bean)) {
-				new DialogBox(this, "저장 하였습니다.", "저장");
+				new DialogBox(this, "저장 하였습니다", "저장");
 				p3.removeAll();
-				vlist.removeAllElements();
 				remove(p3);
+				vlist.removeAllElements();
 				viewList();
 			}else {
-				new DialogBox(this, "저장에 실패 하였습니다.", "저장");
+				new DialogBox(this, "저장에 실패 하였습니다", "저장");
 			}
-			
-
 		}else if(obj==upBtn/*수정저장버튼*/) {
 			MemberBean bean = new MemberBean();
 			bean.setNum(num);
@@ -280,17 +283,26 @@ public class MemberAWT extends MFrame implements ActionListener {
 			bean.setTeam(tf3.getText());
 			bean.setAddress(tf4.getText());
 			if(mgr.updateMember(bean)) {
-				new DialogBox(this, "수장 하였습니다.", "수정");
+				new DialogBox(this, "수정 하였습니다", "수정");
 				p3.removeAll();
 				remove(p3);
 				vlist.removeAllElements();
 				viewList();
 			}else {
-				new DialogBox(this, "수정에 실패 하였습니다.", "수정");
+				new DialogBox(this, "수정에 실패 하였습니다", "수정");
 			}
-			
 		}else if(obj==dupBtn/*중복버튼*/) {
-			
+			String phone = tf2.getText().trim();
+			if(phone.isEmpty()) {
+				new DialogBox(this, "전화번호를 입력하세요", "알림");
+				tf2.requestFocus();
+			}else {
+				boolean result = mgr.isDuplicatePhone(phone);
+				if(result)
+					new DialogBox(this, "중복된 전화번호입니다", "중복");
+				else
+					new DialogBox(this, "사용 가능한 전화번호입니다", "중복");
+			}
 		}
 		validate();
 	}//--actionPerformed

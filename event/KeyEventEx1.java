@@ -27,6 +27,22 @@ implements ActionListener, KeyListener{
 		add(btn,BorderLayout.NORTH);
 		validate();
 	}
+
+	@Override //문자완성시 호출: 대소문자 구분
+	public void keyTyped(KeyEvent e) {
+		ta.append("###keyTyped " + tf.getText() + "\n");
+	}
+
+	@Override //키 누를때
+	public void keyPressed(KeyEvent e) {
+		ta.append("###keyPressed " + tf.getText() + "\n");
+	}
+
+	@Override //키 뗄 때
+	public void keyReleased(KeyEvent e) {
+		ta.append("###keyReleased " + tf.getText() + "\n");
+	}
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -35,22 +51,6 @@ implements ActionListener, KeyListener{
 		tf.requestFocus();
 	}
 
-	@Override // 문자완성 시 호출: 대소문자 구분
-	public void keyTyped(KeyEvent e) {
-		ta.append("###keyTyped:" + tf.getText() + "\n") ;
-	}
-	
-	@Override // 키 누를 때
-	public void keyPressed(KeyEvent e) {
-		ta.append("###keyPressed:" + tf.getText() + "\n") ;
-	}
-	
-	@Override // 키 뗄 때
-	public void keyReleased(KeyEvent e) {
-		ta.append("###keyREleased:" + tf.getText() + "\n") ;
-	}
-	
-	
 	public static void main(String[] args) {
 		new KeyEventEx1();	
 	}

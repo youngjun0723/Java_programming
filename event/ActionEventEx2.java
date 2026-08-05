@@ -31,7 +31,7 @@ implements ActionListener{
 		list.add("짜장면");
 		list.add("짬뽕");
 		add(p, BorderLayout.EAST);
-		add(tf=new TextField(), BorderLayout.SOUTH);
+		add(tf = new TextField(), BorderLayout.SOUTH);
 		tf.addActionListener(this);
 		validate();
 	}
@@ -39,25 +39,26 @@ implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
+		//System.out.println(cmd);
 		if(cmd.equals(lab[0])||e.getSource()==tf) {
 			String str = tf.getText().trim();
-			if(str.length() == 0) {
-				new DialogBox(this, "문자를 입력하세요", "경고");
+			if(str.length()==0) {
+				new DialogBox(this, "문자열을 입력하세요", "경고");
 			}else {
 				list.add(str);
 			}
 			tf.setText("");
 			tf.requestFocus();
-		} else if(cmd.equals(lab[1])) {
+		}else if(cmd.equals(lab[1])) {
 			int idx = list.getSelectedIndex();
-			if(idx == -1) {
-				new DialogBox(this, "아이템을 선택하세요", "경고");				
+			if(idx==-1) {
+				new DialogBox(this, "아이템을 선택하세요", "경고");
 				return;
 			}
-			list.remove(idx);
-		} else if(cmd.equals(lab[2])) {
+			list.remove(idx);//선택된 아이템 삭제
+		}else if(cmd.equals(lab[2])) {
 			list.removeAll();
-		} else if(cmd.equals(lab[3])) {
+		}else if(cmd.equals(lab[3])) {
 			System.exit(0);
 		}
 	}

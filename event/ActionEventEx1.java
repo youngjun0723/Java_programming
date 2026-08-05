@@ -37,7 +37,8 @@ implements ActionListener{
 		p2.add(btn1=new Button("인사하기"));
 		p2.add(btn2=new Button("종료하기"));
 		
-	
+		btn1.addActionListener(this);
+		btn2.addActionListener(this);
 		//////////////////////////////////////////////////////////
 		add(tf, BorderLayout.NORTH);
 		add(p1);

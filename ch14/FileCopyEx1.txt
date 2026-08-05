@@ -1,0 +1,29 @@
+1 : package ch14;
+2 : 
+3 : import java.io.FileReader;
+4 : import java.io.FileWriter;
+5 : import java.util.Scanner;
+6 : 
+7 : public class FileCopyEx1 {
+8 : 	public static void main(String[] args) {
+9 : 		try {
+10 : 			Scanner sc = new Scanner(System.in);
+11 : 			System.out.print("원본파일: ");
+12 : 			String oriFile = sc.nextLine();
+13 : 			System.out.print("복사파일: ");
+14 : 			String copyFile = sc.nextLine();
+15 : 			FileReader fr = new FileReader("ch14/"+oriFile);
+16 : 			FileWriter fw = new FileWriter("ch14/"+copyFile);//파일생성
+17 : 			int a;
+18 : 			while((a=fr.read())!=-1) {
+19 : 				fw.write(a);
+20 : 			}
+21 : 			fw.flush();
+22 : 			fw.close();
+23 : 			fr.close();
+24 : 			System.out.println("Copy End~~");
+25 : 		} catch (Exception e) {
+26 : 			e.printStackTrace();
+27 : 		}
+28 : 	}
+29 : }

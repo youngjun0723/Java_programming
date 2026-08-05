@@ -35,7 +35,7 @@ implements ActionListener, MouseListener{
 		add(p2, BorderLayout.NORTH);
 		add(ta, BorderLayout.CENTER);
 		tf.addActionListener(this);
-		bt1.addMouseListener(this); // 어떤 상황에 대해 아래 5개의 메소드가 반응하겠지?
+		bt1.addMouseListener(this);
 		bt2.addActionListener(this);
 		bt3.addActionListener(this);
 		validate();
@@ -57,39 +57,30 @@ implements ActionListener, MouseListener{
 		}
 	}
 
-
-
-
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		ta.append("##mouseClicked\n");
+		ta.append("###mouseClicked\n");
 	}
-
 	@Override
 	public void mousePressed(MouseEvent e) {
-		ta.append("##mousePressed\n");
+		ta.append("###mousePressed\n");
 	}
-
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		ta.append("##mouseReleased\n");
+		ta.append("###mouseReleased\n");
 	}
-
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		ta.append("##mouseEntered\n");
+		ta.append("###mouseEntered\n");
 	}
-
 	@Override
 	public void mouseExited(MouseEvent e) {
-		ta.append("##mouseExited\n");
+		ta.append("###mouseExited\n");
 	}
+	
 
-	
-	
 	public static void main(String[] args) {
 		new MouseEventEx1();
-	
 	}
-	
+
 }

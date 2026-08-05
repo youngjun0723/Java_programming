@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 
 public class EventEx5 extends MFrame implements ActionListener{
 
-	// 버튼이 3개 이상이면 배열로 만들자. 확장 용이성 good.
 	Button btn[] = new Button[3];
 	String label[] = {"버튼1", "버튼2", "버튼3"};
 	
@@ -20,23 +19,19 @@ public class EventEx5 extends MFrame implements ActionListener{
 			btn[i].addActionListener(this);
 		}
 		add(p, BorderLayout.SOUTH);
-
 	}
 	
 	@Override 
 	public void actionPerformed(ActionEvent e) {
 		//ActionEvent 객체를 생성시킨 source 리턴
-		//액션 이벤트 소스를 발생시킨 객체가 누구니?
 		Object obj = e.getSource();
-		
-		// 주소값 비교임!!!! 
 		if(obj==btn[0]) {
 			setBackground(MColor.rColor());
-		}else if(obj == btn[1]) {
-			for(int i = 0; i < btn.length; i++) {
+		}else if(obj==btn[1]) {
+			for (int i = 0; i < btn.length; i++) {
 				btn[i].setBackground(MColor.rColor());
 			}
-		} else if(obj ==btn[2]) {
+		}else if(obj==btn[2]) {
 			System.exit(0);
 		}
 	}

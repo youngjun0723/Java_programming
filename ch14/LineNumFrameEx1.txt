@@ -1,0 +1,108 @@
+1 : package ch14;
+2 : 
+3 : import java.awt.BorderLayout;
+4 : import java.awt.Button;
+5 : import java.awt.FileDialog;
+6 : import java.awt.Panel;
+7 : import java.awt.TextArea;
+8 : import java.awt.event.ActionEvent;
+9 : import java.awt.event.ActionListener;
+10 : import java.io.BufferedReader;
+11 : import java.io.FileReader;
+12 : import java.io.FileWriter;
+13 : import java.io.IOException;
+14 : import java.io.LineNumberReader;
+15 : 
+16 : public class LineNumFrameEx1 extends MFrame 
+17 : implements ActionListener{
+18 : 	
+19 : 	Button open, save;
+20 : 	TextArea ta;
+21 : 	FileDialog openDialog, saveDialog;
+22 : 	String sourceDir;
+23 : 	String sourceFile;
+24 : 	String dir, file;
+25 : 	
+26 : 	public LineNumFrameEx1() {
+27 : 		super(400,500);
+28 : 		setTitle("Line Number Add");
+29 : 		add(ta = new TextArea());
+30 : 		Panel p = new Panel();
+31 : 		p.add(open = new Button("OPEN"));
+32 : 		p.add(save = new Button("SAVE"));
+33 : 		openDialog = new FileDialog(this,"파일열기",FileDialog.LOAD);
+34 : 		saveDialog = new FileDialog(this,"파일저장",FileDialog.SAVE);
+35 : 		ta.setEditable(false);
+36 : 		open.addActionListener(this);
+37 : 		save.addActionListener(this);
+38 : 		add(p,BorderLayout.SOUTH);
+39 : 		validate();
+40 : 	}
+41 : 
+42 : 	@Override
+43 : 	public void actionPerformed(ActionEvent e) {
+44 : 		Object obj = e.getSource();
+45 : 		if(obj==open) {
+46 : 			if(openDialog==null) {
+47 : 				openDialog = new FileDialog(this, "파일열기", FileDialog.LOAD);
+48 : 			}
+49 : 			openDialog.setVisible(true);
+50 : 			String dir, file;
+51 : 			dir = openDialog.getDirectory();
+52 : 			file = openDialog.getFile();
+53 : 			readFile(dir+file, ta);
+54 : 		}else if(obj==save) {
+55 : 			if(saveDialog==null) {
+56 : 				saveDialog = new FileDialog(this, "파일저장", FileDialog.SAVE);
+57 : 			}
+58 : 			saveDialog.setVisible(true);
+59 : 			String dir, file;
+60 : 			dir = saveDialog.getDirectory();
+61 : 			file = saveDialog.getFile();
+62 : 			writeFile(dir+file, ta);
+63 : 			new DialogBox(this, "저장 하였습니다", "저장");
+64 : 		}
+65 : 	}
+66 : 	
+67 : 	public void readFile(String file, TextArea ta) {
+68 : 		try {
+69 : 			BufferedReader br = new BufferedReader(new FileReader(file));
+70 : 			String str = "";
+71 : 			int a = 1;
+72 : 			while(true) {
+73 : 				str = br.readLine();
+74 : 				if(str==null) break;
+75 : 				ta.append(a+" : " + str + "\n");
+76 : 				a++;
+77 : 			}
+78 : 			br.close();
+79 : 		} catch (Exception e) {
+80 : 			e.printStackTrace();
+81 : 		}
+82 : 	}
+83 : 	
+84 : 	public void readFile2(String file, TextArea ta) {
+85 : 		
+86 : 	}
+87 : 	
+88 : 	public void writeFile(String file, TextArea ta) {
+89 : 		try {
+90 : 			FileWriter fw = new FileWriter(file);
+91 : 			fw.write(ta.getText());
+92 : 			ta.setText("");
+93 : 			fw.close();
+94 : 		} catch (Exception e) {
+95 : 			e.printStackTrace();
+96 : 		}
+97 : 	}
+98 : 	
+99 : 	public static void main(String[] args) {
+100 : 		new LineNumFrameEx1();
+101 : 	}
+102 : }
+103 : 
+104 : 
+105 : 
+106 : 
+107 : 
+108 : 
