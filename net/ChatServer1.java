@@ -19,6 +19,7 @@ public class ChatServer1 {
 			vc = new Vector<Client1>();
 		} catch (Exception e) {
 			System.err.println("Error in Server");
+			e.printStackTrace();
 			System.exit(1);
 		}
 		System.out.println("***********************************");
